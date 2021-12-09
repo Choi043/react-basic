@@ -1,28 +1,36 @@
 import React, { useState } from 'react';
+import Movie from './components/Movie';
+import MovieForm from './components/MovieForm'
 
 function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const onSubmit = (event) => {
-    event.preventDefault();
-    console.log(username, password);
+  const [movies, setMovies] = useState([]);
+
+  const removeMovie = (id) => {
+    setMovies(movies.filter(movie => {
+      return movie.id !== id;
+    }));
   };
 
+  const renderMovies = movies.length ? movies.map(movie => {
+    return (
+      <Movie 
+        movie={movie} 
+        key = {movie.id}
+        removeMovie={removeMovie}
+      />
+    );
+  }) : '추가된 영화가 없습니다.';
+  const addMovie = (movie) =>{
+    setMovies([
+      ...movies,
+        movie
+    ]);
+  };
   return (
     <div className="App">
-      <form onSubmit={ onSubmit }>
-        <input 
-          placeholder="Username" 
-          value={ username } 
-          onChange={ (e) => setUsername(e.target.value) }
-        /><br />    
-        <input 
-          placeholder="Password" 
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-        /><br />
-        <button type="submit">Login</button>
-      </form>
+      <h1>Movie list</h1>
+      <MovieForm addMovie={addMovie}/>
+      { renderMovies }
     </div>
   );
 }
