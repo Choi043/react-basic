@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Movie from './components/Movie';
 import MovieForm from './components/MovieForm';
 import Navbar from './components/Navbar';
+import Users from './pages/Users';
 import {
   BrowserRouter as Router,
   Switch,
   Route
-} from "react-router-dom";
+} from 'react-router-dom'
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -33,14 +34,26 @@ function App() {
     ]);
   };
   return (
+    <Router>
       <div className="App">
         <Navbar />
-          <h1>Movie list</h1>
-          <MovieForm addMovie={addMovie}/>
-          { renderMovies }
-          <h1>Users</h1>
-          <h1>Home</h1>
+        <div className="container">
+          <Switch> 
+            <Route path="/movies">
+              <h1>Movie list</h1>
+              <MovieForm addMovie={addMovie}/>
+              { renderMovies }
+            </Route>
+            <Route path="/users">
+              <Users />
+            </Route>
+            <Route path="/" exact>
+              <h1>Home</h1>
+            </Route>
+          </Switch>
+        </div>
       </div>
+    </Router>
   );
 }
 
