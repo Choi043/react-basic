@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserList from '../components/UserList';
 import Spinner from '../components/Spinner';
+import { useParams } from 'react-router-dom';
 
-const Users = () => {
+const User = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  //const { id } = useParams();
+  //console.log(id);
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/users')
@@ -17,11 +21,11 @@ const Users = () => {
 
   return (
     <>
-      <h1>Users</h1>
+      <h1>User 정보</h1>
       {loading ? <Spinner /> :
       <UserList users={users} />}
     </>
   );
 };
 
-export default Users;
+export default User;
