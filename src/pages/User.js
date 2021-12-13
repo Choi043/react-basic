@@ -7,9 +7,8 @@ import { useParams } from 'react-router-dom';
 const User = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  //const { id } = useParams();
-  //console.log(id);
+  // const { id } = useParams();
+  // console.log(id);
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/users')

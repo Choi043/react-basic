@@ -5,7 +5,7 @@ import Spinner from '../components/Spinner';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/users')
